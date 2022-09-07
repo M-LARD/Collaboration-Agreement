@@ -96,7 +96,7 @@ How will you share the repository with your teammates?
 
 What is your Git flow?
 
-- Merge working code into main, merge test-code into test, merge feature branches into test?
+- Merge working code into main, merge feature branches into test?
 
 Will you be using a PR review workflow? If so, consider:
 
@@ -118,3 +118,7 @@ How often will you merge?
 How will you communicate that it’s time to merge?
 
 - Slack.
+
+## Presentation Slide Link
+
+https://docs.google.com/presentation/d/1xAhkq_2kxocbcrQwJW3LcbEhVct1Bj-SYAn_lAYiBYs/edit?usp=sharing
