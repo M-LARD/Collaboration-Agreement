@@ -55,23 +55,22 @@ Knowing that every person in your team needs to understand all aspects of the pr
 
 ### Communication Plan
 
-What hours will you be available to communicate?
-
+- What hours will you be available to communicate?
 > Communicate async via Slack 24/7 (3 time zones, PST, central, EST)
 > Group work during lab hours - anything outside of lab hours is agreed on as a team via Slack
-> What platforms will you use to communicate (ie. Slack, phone …)?
+- What platforms will you use to communicate (ie. Slack, phone …)?
 > Slack
-> How often will you take breaks?
+- How often will you take breaks?
 > As needed
-> What is your plan if you start to fall behind?
+- What is your plan if you start to fall behind?
 > Schedule extra work hours and ask team members for help
-> How will you communicate after hours and on the weekend?
+- How will you communicate after hours and on the weekend?
 > Slack
-> What is your strategy for ensuring everyone’s voice is heard?
+- What is your strategy for ensuring everyone’s voice is heard?
 > Ask everyone at the end of a session, in case they have anything to add
 > Standups
 > Use the chat if others are talking
-> How will you ensure that you are creating a safe environment where everyone feels comfortable speaking up?
+- How will you ensure that you are creating a safe environment where everyone feels comfortable speaking up?
 > Remind everyone that it's a safe space to ask questions and brainstorm
 
 ### Work Plan
@@ -108,7 +107,7 @@ How many people must review a PR?
 
 Who merges PRs?
 
-- Whomever is available. All merges should be communitcated via Slack.
+- Whomever is available. All merges should be communicated via Slack.
 
 How often will you merge?
 
