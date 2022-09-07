@@ -1,6 +1,6 @@
 # Collaboration-Agreement
 
-authored by Monika, Lauren, Alejandro, Ray, and Daniel, Team M'LARD!
+authored by Monika, Lauren, Alejandro, Ray, and Daniel, Team M'LARD! 🦆
 
 ### Strengths
 
