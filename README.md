@@ -103,6 +103,18 @@ Will you be using a PR review workflow? If so, consider:
 - Yes, one person must verify the pr before merge.
 
 How many people must review a PR?
+
+- One person.
+
 Who merges PRs?
+
+- Whomever is available. All merges should be communitcated via Slack.
+
 How often will you merge?
+
+- Whenever we get a feature working.
+- At the end of every work session we'll merge into our feature, dev or production branches depending on the state of the code.
+
 How will you communicate that it’s time to merge?
+
+- Slack.
