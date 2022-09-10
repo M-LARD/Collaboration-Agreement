@@ -32,7 +32,9 @@ componentDidMount = async()=>{
   };
 
   render() {
-    return <></>;
+    return( <>
+  <h3>Hello!! Prices am I right?</h3>
+    </>);
   }
 }
 
