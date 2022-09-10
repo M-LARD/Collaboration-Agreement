@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { render } from "@testing-library/react";
 
 class Main extends React.Component {
   constructor(props) {
@@ -10,9 +9,9 @@ class Main extends React.Component {
       savedResults: [],
     };
   }
-componentDidMount = async()=>{
-  this.getSavedCities(); 
-}
+  componentDidMount = async () => {
+    this.getSavedCities();
+  };
 
   getSavedCities = async () => {
     const config = {
@@ -32,9 +31,11 @@ componentDidMount = async()=>{
   };
 
   render() {
-    return( <>
-  <h3>Hello!! Prices am I right?</h3>
-    </>);
+    return (
+      <>
+        <h3>Hello!! Prices am I right?</h3>
+      </>
+    );
   }
 }
 
