@@ -1,14 +1,29 @@
 import React from "react";
+import { MantineProvider, Navbar, Box, Header, Text } from "@mantine/core";
 
-class Header extends React.Component {
+class Head extends React.Component {
   render() {
     return (
-      <>
-        <h1> PRICES RIGHT?! </h1>
-        <h4> Let's check out some prices</h4>
-      </>
+      <Box>
+        <MantineProvider
+          theme={{
+            colorScheme: "light",
+          }}
+        >
+          <Header height={50}>PRICES RIGHT?!</Header>
+          <Navbar height={50} p="xs" width="100%">
+            Application navbar
+            <Navbar.Section>{/* Header with logo */}</Navbar.Section>
+            <Navbar.Section grow mt="md">
+              {/* Links sections */}
+            </Navbar.Section>
+            <Navbar.Section>{/* Footer with user */}</Navbar.Section>
+          </Navbar>
+          <Text> Let's check out some prices</Text>
+        </MantineProvider>
+      </Box>
     );
   }
 }
 
-export default Header;
+export default Head;

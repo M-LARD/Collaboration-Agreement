@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Demo from "./SearchForm"
 
 class Main extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Main extends React.Component {
   render() {
     return (
       <>
-        <h3>Hello!! Prices am I right?</h3>
+        <Demo></Demo>
       </>
     );
   }
