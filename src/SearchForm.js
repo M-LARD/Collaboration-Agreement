@@ -1,7 +1,7 @@
 import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
 
-export default function Demo() {
+export default function Form() {
   const form = useForm({
     initialValues: {
       email: '',
