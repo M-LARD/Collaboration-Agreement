@@ -8,28 +8,26 @@ class Main extends React.Component {
     super(props);
     this.state = {
       errorMessage: "",
-      savedResults: [
-        // {
-        //   _id: "631ff3d69799c4559a7d923b",
-        //   city: "Hamilton, Bermuda",
-        //   col_idx: 149.02,
-        //   rent_index: 96.1,
-        //   col_plus_idx: 124.22,
-        //   groceries_idx: 157.89,
-        //   restaurant_idx: 155.22,
-        //   local_purchasing_pwr_idx: 79.43,
-        // },
-      ],
+      savedResults: [],
+      citySearch: "",
+      city: [],
     };
   }
+
   componentDidMount = async () => {
     this.getSavedCities();
   };
 
   getSavedCities = async () => {
+    // if (this.props.auth0.isAuthenticated) {
+    //   const res = await this.props.auth0.getIdTokenClaims();
+    //   const jwt = res.__raw;
+
+    //   console.log('token: ', jwt);
     const config = {
+      // headers: {"Authorization": `Bearer ${jwt}`},
       baseURL: process.env.REACT_APP_SERVER,
-      url: "/citysearch",
+      url: "/savedresults",
     };
     try {
       const savedResultsResponse = await axios(config);
@@ -43,65 +41,92 @@ class Main extends React.Component {
     }
   };
 
-  // myAddedCities = async (addsCity) => {
-  //   const config = {
-  //     method: "post",
-  //     baseURL: process.env.REACT_APP_SERVER,
-  //     url: "/citysearch",
-  //     data: addsCity,
-  //   };
-  //   try {
-  //     const response = await axios(config);
-  //     this.setState({ cites: [...this.state.savedResults, response.data] });
-  //   } catch (error) {
-  //     console.error("error is in the myAddedCities function", error.response);
-  //     this.setState({
-  //       errorMessage: `Status Code${error.response.status}: ${error.response.data}`,
+  // getCity = async () => {
+  //   const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${this.state.citySearch}`;
+  //   axios
+  //     .get(url)
+  //     .then((response) => {
+  //       console.log("city response data", response.data);
+  //       this.setState({ city: response.data });
+  //     })
+  //     .catch((error) => {
+  //       this.setState({ error: error });
   //     });
-  //   }
   // };
 
-  updatesCities = async (updatedCities) => {
+  addCity = async (addsCity) => {
+    // if (this.props.auth0.isAuthenticated) {
+    //   const res = await this.props.auth0.getIdTokenClaims();
+    //   const jwt = res.__raw;
+
+    //   console.log("token: ", jwt);
+      const config = {
+        // headers: { Authorization: `Bearer ${jwt}` },
+        method: "post",
+        baseURL: process.env.REACT_APP_SERVER,
+        url: "/citysearch",
+        data: addsCity,
+      };
+      try {
+        const response = await axios(config);
+        this.setState({ cites: [...this.state.savedResults, response.data] });
+      } catch (error) {
+        console.error("error is in the addCity function", error.response);
+        this.setState({
+          errorMessage: `Status Code${error.response.status}: ${error.response.data}`,
+        });
+      }
+    // }
+  };
+
+  // updatesCities = async (updatedCities) => {
+  //   // if (this.props.auth0.isAuthenticated) {
+  //   //   const res = await this.props.auth0.getIdTokenClaims();
+  //   //   const jwt = res.__raw;
+
+  //   //   console.log('token: ', jwt);
+  //   const config = {
+  //     // headers: { "Authorization": `Bearer ${jwt}` },
+  //     method: "put",
+  //     baseURL: process.env.REACT_APP_HEROKU,
+  //     url: `/savedresults/${updatedCities._id}`,
+  //     data: updatedCities,
+  //   };
+
+  //   const updatedCity = await axios(config);
+  //   try {
+  //     const updatedCities = this.state.savedResults.map((existingCity) => {
+  //       if (existingCity._id === updatedCities._id) {
+  //         return updatedCity;
+  //       } else {
+  //         return existingCity;
+  //       }
+  //     });
+  //     this.setState({
+  //       savedResults: updatedCities,
+  //     });
+  //   } catch (error) {
+  //     console.error("error in the updateCities function: ", error);
+  //   }
+  //   // }
+  // };
+
+  deleteCities = async (deletesCity) => {
     // if (this.props.auth0.isAuthenticated) {
     //   const res = await this.props.auth0.getIdTokenClaims();
     //   const jwt = res.__raw;
 
     //   console.log('token: ', jwt);
-    const config = {
-      // headers: { "Authorization": `Bearer ${jwt}` },
-      method: "put",
-      baseURL: process.env.REACT_APP_HEROKU,
-      url: `/citysearch/${updatedCities._id}`,
-      data: updatedCities,
-    };
-
-    const updatedCity = await axios(config);
-    try {
-      const updatedCities = this.state.savedResults.map((existingCity) => {
-        if (existingCity._id === updatedCities._id) {
-          return updatedCity;
-        } else {
-          return existingCity;
-        }
-      });
-      this.setState({
-        savedResults: updatedCities,
-      });
-    } catch (error) {
-      console.error("error in the updateCities function: ", error);
-    }
-  };
-
-  deleteCities = async (deletesCity) => {
     try {
       const proceed = window.confirm(
         `Do you wish to delete ${deletesCity._id}?`
       );
       if (proceed) {
         const config = {
+          // headers: {"Authorization": `Bearer ${jwt}`},
           method: "delete",
           baseURL: process.env.REACT_APP_SERVER,
-          url: `/citysearch/${deletesCity._id}`,
+          url: `/savedresults/${deletesCity._id}`,
         };
         // const newCitiesArray =this.state.savedResults.filter(
         //   (city)=> city._id !==deletesCity._id
@@ -115,12 +140,13 @@ class Main extends React.Component {
         errorMessage: `Status Code ${error.response.status}: ${error.response.data}`,
       });
     }
+    // }
   };
 
   render() {
     return (
       <>
-        <Form />
+        <Form addCity={this.addCity} />
         <SavedCities savedResults={this.state.savedResults} />
       </>
     );
