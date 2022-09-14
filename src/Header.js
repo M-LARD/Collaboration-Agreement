@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import { MantineProvider, Navbar, Box, Header, Text } from "@mantine/core";
-import SavedCities from "./SavedCities";
-import About from "./About";
+// import SavedCities from "./SavedCities";
+// import About from "./About";
 
 class Head extends React.Component {
   render() {
@@ -41,8 +41,8 @@ class Head extends React.Component {
                 </div>
                 <Routes>
                   {/* <Route path= '/' element={<Main/>}/> */}
-                  <Route path="/About" element={<About />} />
-                  <Route path="/SavedCities" element={<SavedCities />} />
+                  {/* <Route path="/About" element={<About />} />
+                  <Route path="/SavedCities" element={<SavedCities />} /> */}
                 </Routes>
               </Navbar.Section>
               <Navbar.Section>{/* Footer with user */}</Navbar.Section>
