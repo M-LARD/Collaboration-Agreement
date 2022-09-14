@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import Header from "./Header";
 import Main from "./Main";
-// import About from './About';
+import About from './About';
 import Footer from "./Footer";
 
 // import { AppProps } from 'next/app';
@@ -16,6 +16,7 @@ class App extends React.Component {
       <div className="App">
               <Header />
               <Main />
+              <About />
               <Footer />
       </div>
     );
