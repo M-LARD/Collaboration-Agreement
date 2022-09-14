@@ -9,16 +9,16 @@ class Main extends React.Component {
     this.state = {
       errorMessage: "",
       savedResults: [
-        {
-          _id: "631ff3d69799c4559a7d923b",
-          city: "Hamilton, Bermuda",
-          col_idx: 149.02,
-          rent_index: 96.1,
-          col_plus_idx: 124.22,
-          groceries_idx: 157.89,
-          restaurant_idx: 155.22,
-          local_purchasing_pwr_idx: 79.43,
-        },
+        // {
+        //   _id: "631ff3d69799c4559a7d923b",
+        //   city: "Hamilton, Bermuda",
+        //   col_idx: 149.02,
+        //   rent_index: 96.1,
+        //   col_plus_idx: 124.22,
+        //   groceries_idx: 157.89,
+        //   restaurant_idx: 155.22,
+        //   local_purchasing_pwr_idx: 79.43,
+        // },
       ],
     };
   }
