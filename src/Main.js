@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Form from "./SearchForm";
 import SavedCities from "./SavedCities";
+import {withAuth0} from '@auth0/auth0-react'; 
 
 class Main extends React.Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class Main extends React.Component {
       });
     }
   };
+
 
   getCity = async (city) => {
     const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${city}`;
@@ -125,4 +127,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default withAuth0(Main);
