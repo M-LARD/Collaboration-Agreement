@@ -1,13 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import { MantineProvider, Navbar, Box, Header, Text } from "@mantine/core";
-// import SavedCities from "./SavedCities";
-// import About from "./About";
+import SavedCities from "./SavedCities";
+import About from "./About";
+import Main from "./Main";
 
 class Head extends React.Component {
   render() {
     return (
-      <Router>
+      // <Router>
         <Box>
           <MantineProvider
             theme={{
@@ -24,11 +25,7 @@ class Head extends React.Component {
                 style={{paddingRight:'.25rem'}}
               />
               Prices Right
-            </Header>
-            <Navbar height={50} p="xs" width="100%">
-              <Navbar.Section></Navbar.Section>
-              <Navbar.Section grow mt="md" style={{paddingRight:'.75rem'}}>
-                <div>
+                
                   <Text component={Link} varient="link" to="/"style={{paddingRight:'.75rem'}}>
                     Home
                   </Text>
@@ -38,18 +35,16 @@ class Head extends React.Component {
                   <Text component={Link} varient="link" to="/SavedCities"style={{paddingRight:'.75rem'}}>
                     Saved Cities
                   </Text>
-                </div>
-                <Routes>
-                  {/* <Route path= '/' element={<Main/>}/> */}
-                  {/* <Route path="/About" element={<About />} />
-                  <Route path="/SavedCities" element={<SavedCities />} /> */}
-                </Routes>
-              </Navbar.Section>
+                  {/* <Routes>
+                  <Route path= '/' element={<Main/>}/>
+                  <Route path="/About" element={<About />} />
+                  <Route path="/SavedCities" element={<SavedCities />} />
+                </Routes> */}
+                </Header>
               <Navbar.Section>{/* Footer with user */}</Navbar.Section>
-            </Navbar>
           </MantineProvider>
         </Box>
-      </Router>
+      // </Router>
     );
   }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Form from "./SearchForm";
 import SavedCities from "./SavedCities";
+import {withAuth0} from '@auth0/auth0-react'; 
 
 class Main extends React.Component {
   constructor(props) {
@@ -41,18 +42,18 @@ class Main extends React.Component {
     }
   };
 
-  // getCity = async () => {
-  //   const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${this.state.citySearch}`;
-  //   axios
-  //     .get(url)
-  //     .then((response) => {
-  //       console.log("city response data", response.data);
-  //       this.setState({ city: response.data });
-  //     })
-  //     .catch((error) => {
-  //       this.setState({ error: error });
-  //     });
-  // };
+  getCity = async () => {
+    const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${this.state.citySearch}`;
+    axios
+      .get(url)
+      .then((response) => {
+        console.log("city response data", response.data);
+        this.setState({ city: response.data });
+      })
+      .catch((error) => {
+        this.setState({ error: error });
+      });
+  };
 
   addCity = async (addsCity) => {
     // if (this.props.auth0.isAuthenticated) {
@@ -153,4 +154,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default withAuth0(Main);
