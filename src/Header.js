@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
+import { BrowserRouter as  Link, } from "react-router-dom";
 import { MantineProvider, Navbar, Box, Header, Text } from "@mantine/core";
-import SavedCities from "./SavedCities";
-import About from "./About";
-import Main from "./Main";
+// import SavedCities from "./SavedCities";
+// import About from "./About";
+// import Main from "./Main";
 
 class Head extends React.Component {
   render() {
