@@ -44,10 +44,22 @@ class Main extends React.Component {
 
 
   getCity = async (city) => {
-    const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${city}`;
-    console.log(url);
-    axios
-      .get(url)
+    
+    // const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${city}`;
+        if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+
+      console.log('token: ', jwt);
+
+      const config = {
+        headers: {"Authorization": `Bearer ${jwt}`},
+        baseURL: process.env.REACT_APP_SERVER,
+        url: `/citysearch?city=${city}`
+      };
+
+    // console.log(url);
+    axios(config)
       .then((response) => {
         console.log("city response data", response.data);
         this.setState({ city: response.data });
@@ -55,7 +67,7 @@ class Main extends React.Component {
       .catch((error) => {
         this.setState({ error: error });
       });
-  };
+  }};
 
   addCity = async (addsCity) => {
     // if (this.props.auth0.isAuthenticated) {
