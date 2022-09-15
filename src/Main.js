@@ -41,8 +41,8 @@ class Main extends React.Component {
     }
   };
 
-  getCity = async () => {
-    const url = `${process.env.REACT_APP_SERVER}/citysearch?city=seattle`;
+  getCity = async (city) => {
+    const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${city}`;
     console.log(url);
     axios
       .get(url)
@@ -115,7 +115,10 @@ class Main extends React.Component {
   render() {
     return (
       <>
-        <Form addCity={this.addCity} />
+        <Form 
+          addCity={this.addCity} 
+          getCity={this.getCity}
+          />
         <SavedCities savedResults={this.state.savedResults} />
       </>
     );
