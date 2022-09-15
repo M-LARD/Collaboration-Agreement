@@ -12,6 +12,7 @@ class Main extends React.Component {
       savedResults: [],
       citySearch: "",
       city: [],
+      showForm:false,
     };
   }
 
@@ -32,7 +33,7 @@ class Main extends React.Component {
     };
     try {
       const savedResultsResponse = await axios(config);
-      console.log("Cites from DB: ", savedResultsResponse.data);
+      console.log("Cities from DB: ", savedResultsResponse.data);
       this.setState({ savedResults: savedResultsResponse.data });
     } catch (error) {
       console.error("error is in the getSavedCities function", error.response);
@@ -49,15 +50,12 @@ class Main extends React.Component {
         if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
-
       console.log('token: ', jwt);
-
       const config = {
         headers: {"Authorization": `Bearer ${jwt}`},
         baseURL: process.env.REACT_APP_SERVER,
         url: `/citysearch?city=${city}`
       };
-
     // console.log(url);
     axios(config)
       .then((response) => {
@@ -70,28 +68,29 @@ class Main extends React.Component {
   }};
 
   addCity = async (addsCity) => {
-    // if (this.props.auth0.isAuthenticated) {
-    //   const res = await this.props.auth0.getIdTokenClaims();
-    //   const jwt = res.__raw;
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
 
-    //   console.log("token: ", jwt);
+      console.log("token: ", jwt);
       const config = {
-        // headers: { Authorization: `Bearer ${jwt}` },
+        headers: { Authorization: `Bearer ${jwt}` },
         method: "post",
         baseURL: process.env.REACT_APP_SERVER,
-        url: "/citysearch",
+        url: "/savecity",
         data: addsCity,
       };
       try {
         const response = await axios(config);
-        this.setState({ cites: [...this.state.savedResults, response.data] });
+        this.setState({ savedResults: [...this.state.savedResults, response.data] });
+        
       } catch (error) {
         console.error("error is in the addCity function", error.response);
         this.setState({
           errorMessage: `Status Code${error.response.status}: ${error.response.data}`,
         });
       }
-    // }
+    }
   };
 
   deleteCities = async (deletesCity) => {
@@ -126,12 +125,24 @@ class Main extends React.Component {
     // }
   };
 
+  showModal= () =>{
+    this.setState({showForm: true});
+  };
+
+  closeModal = () => {
+    this.setState({ showForm: false });
+  };
+
   render() {
     return (
       <>
         <Form 
           addCity={this.addCity} 
           getCity={this.getCity}
+          closeModal={this.closeModal}
+          showModal={this.showModal}
+          showForm={this.state.showForm}
+          city={this.state.city}
           />
         <SavedCities savedResults={this.state.savedResults} />
       </>

@@ -1,8 +1,8 @@
 import { TextInput, Button, Group, Box, MantineProvider } from "@mantine/core";
-import { Modal } from "@mantine/core";
+import { Modal, Text } from "@mantine/core";
 import { Component } from "react";
 
-class BookFormModal extends Component {
+class SearchFormModal extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -13,6 +13,7 @@ class BookFormModal extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.props.getCity(this.state.city);
+    this.props.showModal(); 
   };
 
   render() {
@@ -41,9 +42,18 @@ class BookFormModal extends Component {
             </Group>
           </form>
         </Box>
+        {this.props.showForm &&(
+        <Modal opened={this.props.showModal}
+        onClose={this.props.closeModal}>
+        <Text>{this.props.city.city} </Text>
+        <Button onClick={() => this.props.addCity(this.props.city)}
+        > {console.log(this.props.city)}Save</Button>
+
+        </Modal>
+        )}
       </MantineProvider>
     );
   }
 }
 
-export default BookFormModal;
+export default SearchFormModal;
