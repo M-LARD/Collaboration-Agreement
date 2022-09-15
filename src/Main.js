@@ -41,18 +41,19 @@ class Main extends React.Component {
     }
   };
 
-  // getCity = async () => {
-  //   const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${this.state.citySearch}`;
-  //   axios
-  //     .get(url)
-  //     .then((response) => {
-  //       console.log("city response data", response.data);
-  //       this.setState({ city: response.data });
-  //     })
-  //     .catch((error) => {
-  //       this.setState({ error: error });
-  //     });
-  // };
+  getCity = async () => {
+    const url = `${process.env.REACT_APP_SERVER}/citysearch?city=seattle`;
+    console.log(url);
+    axios
+      .get(url)
+      .then((response) => {
+        console.log("city response data", response.data);
+        this.setState({ city: response.data });
+      })
+      .catch((error) => {
+        this.setState({ error: error });
+      });
+  };
 
   addCity = async (addsCity) => {
     // if (this.props.auth0.isAuthenticated) {
@@ -78,38 +79,6 @@ class Main extends React.Component {
       }
     // }
   };
-
-  // updatesCities = async (updatedCities) => {
-  //   // if (this.props.auth0.isAuthenticated) {
-  //   //   const res = await this.props.auth0.getIdTokenClaims();
-  //   //   const jwt = res.__raw;
-
-  //   //   console.log('token: ', jwt);
-  //   const config = {
-  //     // headers: { "Authorization": `Bearer ${jwt}` },
-  //     method: "put",
-  //     baseURL: process.env.REACT_APP_HEROKU,
-  //     url: `/savedresults/${updatedCities._id}`,
-  //     data: updatedCities,
-  //   };
-
-  //   const updatedCity = await axios(config);
-  //   try {
-  //     const updatedCities = this.state.savedResults.map((existingCity) => {
-  //       if (existingCity._id === updatedCities._id) {
-  //         return updatedCity;
-  //       } else {
-  //         return existingCity;
-  //       }
-  //     });
-  //     this.setState({
-  //       savedResults: updatedCities,
-  //     });
-  //   } catch (error) {
-  //     console.error("error in the updateCities function: ", error);
-  //   }
-  //   // }
-  // };
 
   deleteCities = async (deletesCity) => {
     // if (this.props.auth0.isAuthenticated) {
