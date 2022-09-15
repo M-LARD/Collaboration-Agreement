@@ -1,5 +1,5 @@
 import React from "react";
-import { MantineProvider, Box, Text } from "@mantine/core";
+import { MantineProvider, Box, Button, Text } from "@mantine/core";
 
 class SavedCities extends React.Component {
   render() {
@@ -12,8 +12,8 @@ class SavedCities extends React.Component {
               sx={{
                 color: "#00ECE5",
                 fontSize: 22,
-                fontWeight: 'bolder',
-                fontFamily: 'sans-serif',
+                fontWeight: "bolder",
+                fontFamily: "sans-serif",
                 border: "4px solid white",
                 lineHeight: 1.4,
               }}
@@ -81,6 +81,7 @@ class SavedCities extends React.Component {
               >
                 {city.local_purchasing_pwr_idx}
               </Text>
+              <Button onClick={()=>this.props.deleteCities(city)}>Delete</Button>
             </Box>
           ))
         ) : this.props.errorMessage ? (

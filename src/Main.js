@@ -21,13 +21,13 @@ class Main extends React.Component {
   };
 
   getSavedCities = async () => {
-    // if (this.props.auth0.isAuthenticated) {
-    //   const res = await this.props.auth0.getIdTokenClaims();
-    //   const jwt = res.__raw;
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
 
-    //   console.log('token: ', jwt);
+      console.log('token: ', jwt);
     const config = {
-      // headers: {"Authorization": `Bearer ${jwt}`},
+      headers: {"Authorization": `Bearer ${jwt}`},
       baseURL: process.env.REACT_APP_SERVER,
       url: "/savedresults",
     };
@@ -41,6 +41,7 @@ class Main extends React.Component {
         errorMessage: `Status Code${error.response.status}: ${error.response.data}`,
       });
     }
+  }
   };
 
 
@@ -94,18 +95,18 @@ class Main extends React.Component {
   };
 
   deleteCities = async (deletesCity) => {
-    // if (this.props.auth0.isAuthenticated) {
-    //   const res = await this.props.auth0.getIdTokenClaims();
-    //   const jwt = res.__raw;
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
 
-    //   console.log('token: ', jwt);
+      console.log('token: ', jwt);
     try {
       const proceed = window.confirm(
-        `Do you wish to delete ${deletesCity._id}?`
+        `Do you wish to delete ${deletesCity.city}?`
       );
       if (proceed) {
         const config = {
-          // headers: {"Authorization": `Bearer ${jwt}`},
+          headers: {"Authorization": `Bearer ${jwt}`},
           method: "delete",
           baseURL: process.env.REACT_APP_SERVER,
           url: `/savedresults/${deletesCity._id}`,
@@ -122,7 +123,7 @@ class Main extends React.Component {
         errorMessage: `Status Code ${error.response.status}: ${error.response.data}`,
       });
     }
-    // }
+    }
   };
 
   showModal= () =>{
@@ -144,7 +145,8 @@ class Main extends React.Component {
           showForm={this.state.showForm}
           city={this.state.city}
           />
-        <SavedCities savedResults={this.state.savedResults} />
+        <SavedCities savedResults={this.state.savedResults} 
+        deleteCities={this.deleteCities}/>
       </>
     );
   }
