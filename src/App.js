@@ -9,6 +9,7 @@ import Logout from "./Logout";
 import Profile from "./Profile";
 import Welcome from "./Welcome";
 import Footer from "./Footer";
+import SavedCities from "./SavedCities";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -38,10 +39,15 @@ class App extends React.Component {
                   <>
                     <Login />
                     <Welcome />
-                  </>
+                </>
                 )
-              }
-            ></Route>
+              } ></Route>
+              <Route exact
+              path="/SavedCities"
+              element={
+                this.props.auth0.isAuthenticated &&
+                <SavedCities/>}>
+            </Route>
             <Route exact path="/About" element={<About />}></Route>
           </Routes>
           <Footer />
