@@ -2,7 +2,6 @@ import "./App.css";
 import { withAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import Header from "./Header";
-// import Main from "./Main";
 import About from "./About";
 import Login from "./Login";
 import Logout from "./Logout";
@@ -10,6 +9,7 @@ import Profile from "./Profile";
 import Welcome from "./Welcome";
 import Footer from "./Footer";
 import SavedCities from "./SavedCities";
+import SearchForm from "./SearchForm";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -33,20 +33,20 @@ class App extends React.Component {
                   <>
                     <Logout />
                     <Profile />
-                    <SavedCities/>
+                    {/* <SavedCities/> */}
+                    <SearchForm />
                   </>
                 ) : (
                   <>
                     <Login />
                     <Welcome />
-                </>
+                  </>
                 )
               } ></Route>
-              <Route exact
+            <Route exact
               path="/SavedCities"
               element={
-                this.props.auth0.isAuthenticated &&
-                <SavedCities/>}>
+                <SavedCities />}>
             </Route>
             <Route exact path="/About" element={<About />}></Route>
           </Routes>

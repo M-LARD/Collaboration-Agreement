@@ -1,6 +1,5 @@
 import React from "react";
 import { MantineProvider, Box, Button, Text } from "@mantine/core";
-import Form from "./SearchForm";
 import axios from 'axios';
 import { withAuth0 } from "@auth0/auth0-react";
 
@@ -10,9 +9,8 @@ class SavedCities extends React.Component {
     this.state = {
       errorMessage: "",
       savedResults: [],
-      citySearch: "",
-      city: [],
-      showForm: false,
+      // city: [],
+      // showForm: false,
     };
   }
 
@@ -45,56 +43,65 @@ class SavedCities extends React.Component {
   };
 
 
-  getCity = async (city) => {
+  // getCity = async (city) => {
 
-    // const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${city}`;
-    if (this.props.auth0.isAuthenticated) {
-      const res = await this.props.auth0.getIdTokenClaims();
-      const jwt = res.__raw;
-      console.log('token: ', jwt);
-      const config = {
-        headers: { "Authorization": `Bearer ${jwt}` },
-        baseURL: process.env.REACT_APP_SERVER,
-        url: `/citysearch?city=${city}`
-      };
-      // console.log(url);
-      axios(config)
-        .then((response) => {
-          console.log("city response data", response.data);
-          this.setState({ city: response.data });
-        })
-        .catch((error) => {
-          this.setState({ error: error });
-        });
-    }
-  };
+  //   // const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${city}`;
+  //   if (this.props.auth0.isAuthenticated) {
+  //     const res = await this.props.auth0.getIdTokenClaims();
+  //     const jwt = res.__raw;
+  //     console.log('token: ', jwt);
+  //     const config = {
+  //       headers: { "Authorization": `Bearer ${jwt}` },
+  //       baseURL: process.env.REACT_APP_SERVER,
+  //       url: `/citysearch?city=${city}`
+  //     };
+  //     // console.log(url);
+  //     axios(config)
+  //       .then((response) => {
+  //         console.log("city response data", response.data);
+  //         this.setState({ city: response.data });
+  //       })
+  //       .catch((error) => {
+  //         this.setState({ error: error });
+  //       });
+  //   }
+  // };
 
-  addCity = async (addsCity) => {
-    if (this.props.auth0.isAuthenticated) {
-      const res = await this.props.auth0.getIdTokenClaims();
-      const jwt = res.__raw;
+  // addCity = async (addsCity) => {
+  //   if (this.props.auth0.isAuthenticated) {
+  //     const res = await this.props.auth0.getIdTokenClaims();
+  //     const jwt = res.__raw;
 
-      console.log("token: ", jwt);
-      const config = {
-        headers: { Authorization: `Bearer ${jwt}` },
-        method: "post",
-        baseURL: process.env.REACT_APP_SERVER,
-        url: "/savecity",
-        data: addsCity,
-      };
-      try {
-        const response = await axios(config);
-        this.setState({ savedResults: [...this.state.savedResults, response.data] });
+  //     console.log("token: ", jwt);
+  //     const config = {
+  //       headers: { Authorization: `Bearer ${jwt}` },
+  //       method: "post",
+  //       baseURL: process.env.REACT_APP_SERVER,
+  //       url: "/savecity",
+  //       data: addsCity,
+  //     };
+  //     try {
+  //       const response = await axios(config);
+  //       this.setState({ savedResults: [...this.state.savedResults, response.data] });
 
-      } catch (error) {
-        console.error("error is in the addCity function", error.response);
-        this.setState({
-          errorMessage: `Status Code${error.response.status}: ${error.response.data}`,
-        });
-      }
-    }
-  };
+  //     } catch (error) {
+  //       console.error("error is in the addCity function", error.response);
+  //       this.setState({
+  //         errorMessage: `Status Code${error.response.status}: ${error.response.data}`,
+  //       });
+  //     }
+  //   }
+  // };
 
+  
+  // showModal = () => {
+  //   this.setState({ showForm: true });
+  // };
+  
+  // closeModal = () => {
+  //   this.setState({ showForm: false });
+  // };
+  
   deleteCities = async (deletesCity) => {
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
@@ -126,26 +133,9 @@ class SavedCities extends React.Component {
       }
     }
   };
-
-  showModal = () => {
-    this.setState({ showForm: true });
-  };
-
-  closeModal = () => {
-    this.setState({ showForm: false });
-  };
-
   render() {
     return (
       <>
-        <Form
-          addCity={this.addCity}
-          getCity={this.getCity}
-          closeModal={this.closeModal}
-          showModal={this.showModal}
-          showForm={this.state.showForm}
-          city={this.state.city}
-        />
 
         <MantineProvider>
           {this.state.savedResults.length ? (

@@ -1,24 +1,88 @@
 import { TextInput, Button, Group, Box, MantineProvider } from "@mantine/core";
 import { Modal, Text } from "@mantine/core";
 import { Component } from "react";
+import axios from "axios";
+import { withAuth0 } from "@auth0/auth0-react";
 
 class SearchFormModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       city: "",
+      resultCity: [],
+      showForm: false,
+      errorMessage: ""
     };
   }
 
+  getCity = async (city) => {
+
+    // const url = `${process.env.REACT_APP_SERVER}/citysearch?city=${city}`;
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      console.log('token: ', jwt);
+      const config = {
+        headers: { "Authorization": `Bearer ${jwt}` },
+        baseURL: process.env.REACT_APP_SERVER,
+        url: `/citysearch?city=${city}`
+      };
+      // console.log(url);
+      axios(config)
+        .then((response) => {
+          console.log("city response data", response.data);
+          this.setState({ resultCity: response.data });
+        })
+        .catch((error) => {
+          this.setState({ error: error });
+        });
+    }
+  };
+
+  addCity = async (addsCity) => {
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+
+      console.log("token: ", jwt);
+      const config = {
+        headers: { Authorization: `Bearer ${jwt}` },
+        method: "post",
+        baseURL: process.env.REACT_APP_SERVER,
+        url: "/savecity",
+        data: addsCity,
+      };
+      try {
+        const response = await axios(config);
+        this.setState({ savedResults: [...this.state.savedResults, response.data] });
+
+      } catch (error) {
+        console.error("error is in the addCity function", error);
+        this.setState({
+          errorMessage: `Status Code${error.response.status}: ${error.response.data}`,
+        });
+      }
+    }
+  };
+
+  
+  showModal = () => {
+    this.setState({ showForm: true });
+  };
+  
+  closeModal = () => {
+    this.setState({ showForm: false });
+  };
+
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.getCity(this.state.city);
-    this.props.showModal();
+    this.getCity(this.state.city);
+    this.showModal();
   };
 
   clickClose = () => {
-    this.props.addCity(this.props.city)
-    this.props.closeModal(); 
+    this.addCity(this.state.resultCity)
+    this.closeModal(); 
   };
 
   render() {
@@ -55,9 +119,9 @@ class SearchFormModal extends Component {
             </Group>
           </form>
         </Box>
-        {this.props.showForm && (
-          <Modal opened={this.props.showModal} onClose={this.props.closeModal}>
-            <Text>{this.props.city.city} </Text>
+        {this.state.showForm && (
+          <Modal opened={this.showModal} onClose={this.closeModal}>
+            <Text>{this.state.resultCity.city} </Text>
             <Button onClick={this.clickClose}>
               Save
             </Button>
@@ -68,4 +132,4 @@ class SearchFormModal extends Component {
   }
 }
 
-export default SearchFormModal;
+export default withAuth0(SearchFormModal);
