@@ -93,7 +93,7 @@ class SearchFormModal extends Component {
             maxWidth: 400,
             width: "100%",
             height: 180,
-            display: "flex",
+            display: "flexbox",
             alignItems: "center",
             justifyContent: "center",
             marginLeft: "auto",
@@ -112,8 +112,8 @@ class SearchFormModal extends Component {
                 )
               }
             />
-            <Group position="right" mt="md">
-              <Button variant="filled" type="submit">
+            <Group position="right" mt="md" >
+              <Button variant="gradient" type="submit" >
                 Submit
               </Button>
             </Group>
