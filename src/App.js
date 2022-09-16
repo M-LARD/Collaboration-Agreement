@@ -2,7 +2,7 @@ import "./App.css";
 import { withAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import Header from "./Header";
-import Main from "./Main";
+// import Main from "./Main";
 import About from "./About";
 import Login from "./Login";
 import Logout from "./Logout";
@@ -33,7 +33,7 @@ class App extends React.Component {
                   <>
                     <Logout />
                     <Profile />
-                    <Main />
+                    <SavedCities/>
                   </>
                 ) : (
                   <>
