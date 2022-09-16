@@ -1,6 +1,6 @@
 import React from "react";
-import { MantineProvider, Box, Button, Text } from "@mantine/core";
-import axios from 'axios';
+import { MantineProvider, Button, Table, Text, Box } from "@mantine/core";
+import axios from "axios";
 import { withAuth0 } from "@auth0/auth0-react";
 
 class SavedCities extends React.Component {
@@ -23,9 +23,9 @@ class SavedCities extends React.Component {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
 
-      console.log('token: ', jwt);
+      console.log("token: ", jwt);
       const config = {
-        headers: { "Authorization": `Bearer ${jwt}` },
+        headers: { Authorization: `Bearer ${jwt}` },
         baseURL: process.env.REACT_APP_SERVER,
         url: "/savedresults",
       };
@@ -34,14 +34,16 @@ class SavedCities extends React.Component {
         console.log("Cities from DB: ", savedResultsResponse.data);
         this.setState({ savedResults: savedResultsResponse.data });
       } catch (error) {
-        console.error("error is in the getSavedCities function", error.response);
+        console.error(
+          "error is in the getSavedCities function",
+          error.response
+        );
         this.setState({
           errorMessage: `Status Code${error.response.status}: ${error.response.data}`,
         });
       }
     }
   };
-
 
   // getCity = async (city) => {
 
@@ -93,28 +95,27 @@ class SavedCities extends React.Component {
   //   }
   // };
 
-  
   // showModal = () => {
   //   this.setState({ showForm: true });
   // };
-  
+
   // closeModal = () => {
   //   this.setState({ showForm: false });
   // };
-  
+
   deleteCities = async (deletesCity) => {
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
 
-      console.log('token: ', jwt);
+      console.log("token: ", jwt);
       try {
         const proceed = window.confirm(
           `Do you wish to delete ${deletesCity.city}?`
         );
         if (proceed) {
           const config = {
-            headers: { "Authorization": `Bearer ${jwt}` },
+            headers: { Authorization: `Bearer ${jwt}` },
             method: "delete",
             baseURL: process.env.REACT_APP_SERVER,
             url: `/savedresults/${deletesCity._id}`,
@@ -136,92 +137,151 @@ class SavedCities extends React.Component {
   render() {
     return (
       <>
-
         <MantineProvider>
-          {this.state.savedResults.length ? (
-            this.state.savedResults.map((city) => (
-              <Box
-                key={city._id}
-                sx={{
-                  color: "#00ECE5",
-                  fontSize: 22,
-                  fontWeight: "bolder",
-                  fontFamily: "sans-serif",
-                  border: "4px solid white",
-                  lineHeight: 1.4,
-                }}
-              >
-                <Text
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: "#eee",
-                    },
-                  }}
-                >
-                  {city.city}
-                </Text>
-                <Text
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: "#eee",
-                    },
-                  }}
-                >
-                  {city.col_idx}
-                </Text>
-                <Text
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: "#eee",
-                    },
-                  }}
-                >
-                  {city.rent_index}
-                </Text>
-                <Text
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: "#eee",
-                    },
-                  }}
-                >
-                  {city.col_Textlus_idx}
-                </Text>
-                <Text
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: "#eee",
-                    },
-                  }}
-                >
-                  {city.groceries_idx}
-                </Text>
-                <Text
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: "#eee",
-                    },
-                  }}
-                >
-                  {city.restaurant_idx}
-                </Text>
-                <Text
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: "#eee",
-                    },
-                  }}
-                >
-                  {city.local_purchasing_pwr_idx}
-                </Text>
-                <Button onClick={() => this.deleteCities(city)}>Delete</Button>
-              </Box>
-            ))
-          ) : this.state.errorMessage ? (
-            <p>{this.state.errorMessage}</p>
-          ) : (
-            <p>No cities saved</p>
-          )}
+          <Text
+            sx={{
+              textAlign: "center",
+              fontSize: "2rem",
+            }}
+          >
+            About the Dataset
+          </Text>
+          <Box
+            sx={{
+              width: "30%",
+              height: 200,
+              overflow: "scroll",
+              margin: "2% auto",
+              border: "4px solid lightblue",
+            }}
+          >
+            <Text>
+              Each of the indices are relative to New York City (NYC) which
+              means that for New York City, each index should be 100. If another
+              city has, for example, rent index of 120, it means that on an
+              average in that city rents are 20% more expensive than in New York
+              City. If a city has rent index of 70, that means on an average in
+              that city rents are 30% less expensive than in New York City.
+            </Text>
+          </Box>
+          <Table
+            horizontalSpacing="xs"
+            verticalSpacing="xs"
+            fontSize="med"
+            sx={{
+              color: "white",
+              fontWeight: "bolder",
+              fontFamily: "sans-serif",
+              border: "4px solid lightblue",
+              margin: "auto",
+              width: "fit-content",
+            }}
+          >
+            <thead>
+              <tr>
+                <th>
+                  <Text
+                    sx={{
+                      fontSize: 22,
+                      color: "lavender",
+                    }}
+                  >
+                    City
+                  </Text>
+                </th>
+                <th>
+                  <Text
+                    sx={{
+                      fontSize: 22,
+                      color: "lavender",
+                    }}
+                  >
+                    Cost of Living
+                  </Text>
+                </th>
+                <th>
+                  <Text
+                    sx={{
+                      fontSize: 22,
+                      color: "lavender",
+                    }}
+                  >
+                    Gas Prices
+                  </Text>
+                </th>
+                <th>
+                  <Text
+                    sx={{
+                      fontSize: 22,
+                      color: "lavender",
+                    }}
+                  >
+                    Rent Index
+                  </Text>
+                </th>
+                <th>
+                  <Text
+                    sx={{
+                      fontSize: 22,
+                      color: "lavender",
+                    }}
+                  >
+                    Groceries Index
+                  </Text>
+                </th>
+                <th>
+                  <Text
+                    sx={{
+                      fontSize: 22,
+                      color: "lavender",
+                    }}
+                  >
+                    Restaurant Index
+                  </Text>{" "}
+                </th>
+                <th>
+                  <Text
+                    sx={{
+                      fontSize: 22,
+                      color: "lavender",
+                    }}
+                  >
+                    Purchasing Power
+                  </Text>
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.savedResults.length ? (
+                this.state.savedResults.map((city) => (
+                  <tr key={city._id}>
+                    <td>{city.city}</td>
+                    <td>{city.col_idx}</td>
+                    <td> ${city.gas_price}</td>
+                    <td>{city.rent_idx}</td>
+                    <td>{city.groceries_idx}</td>
+                    <td>{city.restaurant_idx}</td>
+                    <td>{city.local_purchasing_pwr_idx}</td>
+                    <td>
+                      <Button
+                        variant="gradient"
+                        position="right"
+                        mt="md"
+                        onClick={() => this.deleteCities(city)}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                ))
+              ) : this.state.errorMessage ? (
+                <p>{this.state.errorMessage}</p>
+              ) : (
+                <p>No cities saved</p>
+              )}
+            </tbody>
+          </Table>
         </MantineProvider>
       </>
     );

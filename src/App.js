@@ -31,8 +31,8 @@ class App extends React.Component {
               element={
                 this.props.auth0.isAuthenticated ? (
                   <>
-                    <Logout />
                     <Profile />
+                    <Logout />
                     {/* <SavedCities/> */}
                     <SearchForm />
                   </>
