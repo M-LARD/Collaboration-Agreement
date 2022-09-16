@@ -1,94 +1,50 @@
 import React from "react";
-import { MantineProvider, Box, Button, Text } from "@mantine/core";
+import { MantineProvider, Group, Button, Text, Grid } from "@mantine/core";
 
 class SavedCities extends React.Component {
   render() {
     return (
       <MantineProvider>
-        {this.props.savedResults.length ? (
-          this.props.savedResults.map((city) => (
-            <Box
-              key={city._id}
-              sx={{
-                color: "#00ECE5",
-                fontSize: 22,
-                fontWeight: "bolder",
-                fontFamily: "sans-serif",
-                border: "4px solid white",
-                lineHeight: 1.4,
-              }}
-            >
-              <Text
+        <Grid>
+          {this.props.savedResults.length ? (
+            this.props.savedResults.map((city) => (
+              <Grid.Col
+                style={{ maxWidth: 330 }}
+                sm={4}
+                xs={4}
+                key={city._id}
                 sx={{
-                  "&:hover": {
-                    backgroundColor: "#eee",
-                  },
+                  color: "#00ECE5",
+                  fontSize: 22,
+                  fontWeight: "bolder",
+                  fontFamily: "sans-serif",
+                  border: "4px solid white",
+                  justify: "space-around",
+                  padding: 20,
+                  margin: 20,
+                  lineHeight: 1.4,
                 }}
               >
-                {city.city}
-              </Text>
-              <Text
-                sx={{
-                  "&:hover": {
-                    backgroundColor: "#eee",
-                  },
-                }}
-              >
-                {city.col_idx}
-              </Text>
-              <Text
-                sx={{
-                  "&:hover": {
-                    backgroundColor: "#eee",
-                  },
-                }}
-              >
-                {city.rent_index}
-              </Text>
-              <Text
-                sx={{
-                  "&:hover": {
-                    backgroundColor: "#eee",
-                  },
-                }}
-              >
-                {city.col_Textlus_idx}
-              </Text>
-              <Text
-                sx={{
-                  "&:hover": {
-                    backgroundColor: "#eee",
-                  },
-                }}
-              >
-                {city.groceries_idx}
-              </Text>
-              <Text
-                sx={{
-                  "&:hover": {
-                    backgroundColor: "#eee",
-                  },
-                }}
-              >
-                {city.restaurant_idx}
-              </Text>
-              <Text
-                sx={{
-                  "&:hover": {
-                    backgroundColor: "#eee",
-                  },
-                }}
-              >
-                {city.local_purchasing_pwr_idx}
-              </Text>
-              <Button onClick={()=>this.props.deleteCities(city)}>Delete</Button>
-            </Box>
-          ))
-        ) : this.props.errorMessage ? (
-          <p>{this.props.errorMessage}</p>
-        ) : (
-          <p>No cities saved</p>
-        )}
+                <Text>City: {city.city}</Text>
+                <Text>Cost of Living Index: {city.col_idx}</Text>
+                <Text>Gas_price: ${city.gas_price}</Text>
+                <Text>Rent Index: {city.rent_idx}</Text>
+                <Text>Groceries Index: {city.groceries_idx}</Text>
+                <Text>Restaurant Index: {city.restaurant_idx}</Text>
+                <Text>Purchasing Power: {city.local_purchasing_pwr_idx}</Text>
+                <Group>
+                <Button position="center" onClick={() => this.props.deleteCities(city)}>
+                  Delete
+                </Button>
+                </Group>
+              </Grid.Col>
+            ))
+          ) : this.props.errorMessage ? (
+            <p>{this.props.errorMessage}</p>
+          ) : (
+            <p>No cities saved</p>
+          )}
+        </Grid>
       </MantineProvider>
     );
   }
