@@ -10,7 +10,7 @@ import {
   useMantineTheme,
   MantineProvider,
 } from '@mantine/core';
-// import { Router, Routes,Link } from "react-router-dom";
+
 
 
 function About() {
@@ -27,11 +27,7 @@ function About() {
       <Title order={1} weight={800}>
         M-LARD
       </Title>
-      {/* <Router>
-        <Routes>
-        <Link to="/App">Home</Link>
-      </Routes>
-      </Router> */}
+  
 
       <Group position='center' style={{ marginBottom: 30, marginTop: 20 }}>
         <Text weight={500} size='lg'>
