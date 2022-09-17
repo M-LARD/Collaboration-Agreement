@@ -14,7 +14,6 @@ const Profile = () => {
       <MantineProvider>
         <Box sx = {{
           display: 'flexbox',
-          position:'absolute',
           verticalAlign:'top,'
         }}>
         <img src={user.picture} alt={user.name} />

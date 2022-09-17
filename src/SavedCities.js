@@ -206,7 +206,7 @@ class SavedCities extends React.Component {
                       color: "lavender",
                     }}
                   >
-                    Gas Prices
+                    Gas Prices(USD)
                   </Text>
                 </th>
                 <th>
@@ -258,7 +258,7 @@ class SavedCities extends React.Component {
                   <tr key={city._id}>
                     <td>{city.city}</td>
                     <td>{city.col_idx}</td>
-                    <td> ${city.gas_price}</td>
+                    <td> {city.gas_price}</td>
                     <td>{city.rent_idx}</td>
                     <td>{city.groceries_idx}</td>
                     <td>{city.restaurant_idx}</td>
