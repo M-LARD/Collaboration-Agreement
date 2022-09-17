@@ -70,7 +70,7 @@ function About() {
             <Card shadow="sm" padding="lg">
               <Card.Section align="center">
                 <Image
-                  src="https://cdn.pixabay.com/photo/2015/05/26/23/52/technology-785742_960_720.jpg"
+                  src="images/Monika.jpg"
                   height={180}
                   width={180}
                   radius="md"
@@ -89,8 +89,7 @@ function About() {
                 size="sm"
                 style={{ color: secondaryColor, lineHeight: 1.5 }}
               >
-                With Fjord Tours you can explore more of the magical fjord
-                landscapes with tours and activities on and around the fjords of
+                Monika is a software developer and consultant with a private practice in educational advising and research. She is passionate about democratizing education through tech, by building scalable, accessible, and affordable educational content, particularly focused on STEM subjects.
               </Text>
               <Button
                 variant="light"
@@ -114,7 +113,7 @@ function About() {
             <Card shadow="sm" padding="lg">
               <Card.Section align="center">
                 <Image
-                  src="https://cdn.pixabay.com/photo/2015/05/26/23/52/technology-785742_960_720.jpg"
+                  src="images/Ray.jpg"
                   height={180}
                   width={180}
                   radius="md"
@@ -133,8 +132,7 @@ function About() {
                 size="sm"
                 style={{ color: secondaryColor, lineHeight: 1.5 }}
               >
-                With Fjord Tours you can explore more of the magical fjord
-                landscapes with tours and activities on and around the fjords of
+                Ray is a software developer based out in Boston, MA who has been working in tech for over 10 years, primarily on the operations side of warehouse robotic automation.
               </Text>
               <Button
                 variant="light"
@@ -207,7 +205,7 @@ function About() {
             <Card shadow="sm" padding="lg">
               <Card.Section align="center">
                 <Image
-                  src="https://cdn.pixabay.com/photo/2015/05/26/23/52/technology-785742_960_720.jpg"
+                  src="images/Dan.jpg"
                   height={180}
                   width={180}
                   radius="md"
@@ -226,8 +224,7 @@ function About() {
                 size="sm"
                 style={{ color: secondaryColor, lineHeight: 1.5 }}
               >
-                With Fjord Tours you can explore more of the magical fjord
-                landscapes with tours and activities on and around the fjords of
+                Daniel has a background in IT infrastructure, and has a long history with gaming and working with computers. He believes the tech industry is increasingly important in every-day life, and wants to bring his problem-solving skills, and desire to learn to the industry.
               </Text>
               <Button
                 variant="light"
@@ -251,7 +248,7 @@ function About() {
             <Card shadow="sm" padding="lg">
               <Card.Section align="center">
                 <Image
-                  src="https://cdn.pixabay.com/photo/2015/05/26/23/52/technology-785742_960_720.jpg"
+                  src="images/Alex.jpg"
                   height={180}
                   width={180}
                   radius="md"
@@ -270,8 +267,7 @@ function About() {
                 size="sm"
                 style={{ color: secondaryColor, lineHeight: 1.5 }}
               >
-                With Fjord Tours you can explore more of the magical fjord
-                landscapes with tours and activities on and around the fjords of
+                Alejandro is software developer with a background in interpreting and translation services. He is passionate about implementing socially-conscious technology and utilizing code to develop creative customer-focused solutions. He is interested in securing a role at a company that allows him to further cultivate his expertise in the field.
               </Text>
               <Button
                 variant="light"
